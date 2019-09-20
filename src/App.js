@@ -10,11 +10,12 @@ import SearchForm from "./components/SearchForm";
 const characterApi = "https://rickandmortyapi.com/api/character/";
 
 export default function App() {
-  const [characterData, setCharacterData] = useState();
+  const [characterInfo, setCharacterInfo] = useState();
   // debugger;
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchCharacterProp, setSearchCharacterProp] = useState("");
+  
   const onSearch = event => {
-    setSearchTerm(event.target.value);
+    setSearchCharacterProp(event.target.value);
   };
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function App() {
       .get(characterApi)
       .then(response => {
         // debugger;
-        setCharacterData(response.data.results);
+        setCharacterInfo(response.data.results);
       })
 
       .catch(error => {
@@ -32,18 +33,18 @@ export default function App() {
       });
   }, []);
 
-  if (characterData){
+  if (characterInfo){
   return (
     <MainStyle>
       <Header />
-      <SearchForm onSearch={onSearch} searchTerm={searchTerm} />
+      <SearchForm onSearch={onSearch} searchCharacterProp={searchCharacterProp} />
       <Route exact path="/" component={WelcomePage} />
       <Route
         path="/characters"
         render={() => (
           <CharacterList
-            characterList={characterData.filter((char) => {
-              return char.name.toLowerCase().includes(searchTerm.toLowerCase());
+            characterList={characterInfo.filter((char) => {
+              return char.name.toLowerCase().includes(searchCharacterProp.toLowerCase());
             })}
           />
         )}
