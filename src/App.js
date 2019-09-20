@@ -13,7 +13,7 @@ export default function App() {
   const [characterInfo, setCharacterInfo] = useState();
   // debugger;
   const [searchCharacterProp, setSearchCharacterProp] = useState("");
-  
+
   const onSearch = event => {
     setSearchCharacterProp(event.target.value);
   };
@@ -33,29 +33,37 @@ export default function App() {
       });
   }, []);
 
-  if (characterInfo){
+  if (characterInfo) {
+    return (
+      <MainStyle>
+        <Header />
+        <SearchForm
+          onSearch={onSearch}
+          searchCharacterProp={searchCharacterProp}
+        />
+        <Route exact path="/" component={WelcomePage} />
+        <Route
+          path="/characters"
+          render={() => (
+            <CharacterList
+              characterList={characterInfo.filter(char => {
+                return char.name
+                  .toLowerCase()
+                  .includes(searchCharacterProp.toLowerCase());
+              })}
+            />
+          )}
+        />
+      </MainStyle>
+    );
+  }
+
   return (
-    <MainStyle>
-      <Header />
-      <SearchForm onSearch={onSearch} searchCharacterProp={searchCharacterProp} />
-      <Route exact path="/" component={WelcomePage} />
-      <Route
-        path="/characters"
-        render={() => (
-          <CharacterList
-            characterList={characterInfo.filter((char) => {
-              return char.name.toLowerCase().includes(searchCharacterProp.toLowerCase());
-            })}
-          />
-        )}
-      />
-    </MainStyle>
+    <div>
+      <h3>Data is loading</h3>
+    </div>
   );
 }
-
-return <div><h3>Data is loading</h3></div>;
-}
-
 
 const MainStyle = styled.main`
   background: yellow;
