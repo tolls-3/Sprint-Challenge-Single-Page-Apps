@@ -1,36 +1,31 @@
 import React from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 
-const StyledCard = styled.div `
-  /* border: 2px solid red;
-  font-size: 1.5rem;
-  width: 30%; */
-  border: 2px solid red;
-  display:flex;
-  flex-direction:column;
-  flex-wrap:wrap;
-  border: 2px solid red;
-  width: 30%;
-  margin: 50px auto;
-  padding: 50px 210px;
-  border-radius: 4px;
-  font-size: 1.5rem;
-  font-weight: bold;
-
-`
-
-
+const StyledCard = styled.div`
+  width: 30vw;
+  height: auto;
+  border: 1px solid #cccccc;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.5rem;
+  background: #00ff00;
+  img {
+    border-radius: 100%;
+  }
+`;
 
 export default function CharacterCard(props) {
-  return(
-  <StyledCard>
-    <img src={props.image}/>
-    <h2>{props.name}</h2>
-    <p>{props.status}</p>
-    <p>{props.species}</p>
-    <p>{props.gender}</p>
-    Location: {props.location.name}
-    Origin: {props.origin.name}
-  </StyledCard>
-  )
+  return (
+    <StyledCard>
+      <img src={props.image} />
+      <h2>Name: {props.name}</h2>
+      <p>Status: {props.status}</p>
+      <p>Species: {props.species}</p>
+      <p>Gender: {props.gender}</p>
+      <p>Location: {props.location.name}</p>
+      <p>Origin: {props.origin.name}</p>
+    </StyledCard>
+  );
 }
