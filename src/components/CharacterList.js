@@ -30,17 +30,17 @@ export default function CharacterList() {
   return (
     <section className="character-list">
       {
-        character.map(star => {
+        character.map(character => {
           return(
           <CharacterCard 
-          key={star.id} 
-          name={star.name} 
-          image={star.image}
-          status={star.status}
-          species={star.species}
-          gender={star.gender}
-          origin={star.origin}
-          location={star.location}/>
+          key={character.id} 
+          name={character.name} 
+          image={character.image}
+          status={character.status}
+          species={character.species}
+          gender={character.gender}
+          origin={character.origin}
+          location={character.location}/>
           )
         })
       }
