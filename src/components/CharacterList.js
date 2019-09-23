@@ -4,7 +4,7 @@ import CharacterCard from "./CharacterCard";
 
 export default function CharacterList(props) {
   // TODO: Add useState to track data from useEffect
-  const { characterList } = props;
+  const { characterList, onSearch, searchCharacterProp } = props;
 
   return (
     <div>

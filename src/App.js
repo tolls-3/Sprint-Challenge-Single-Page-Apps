@@ -5,17 +5,19 @@ import CharacterList from "./components/CharacterList";
 import { Route } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
-import SearchForm from "./components/SearchForm";
+import Search from "./components/Search";
 
-const characterApi = "https://rickandmortyapi.com/api/character/";
+const characterApi = "https://rikck-api.herokuapp.com/api";
+//https://rikck-api.herokuapp.com/api///
 
 export default function App() {
-  const [characterInfo, setCharacterInfo] = useState();
+  const [characterInfo, setCharacterInfo] = useState([]);
   // debugger;
   const [searchCharacterProp, setSearchCharacterProp] = useState("");
 
   const onSearch = event => {
     setSearchCharacterProp(event.target.value);
+    console.log(searchCharacterProp);
   };
 
   useEffect(() => {
@@ -37,15 +39,13 @@ export default function App() {
     return (
       <MainStyle>
         <Header />
-        <SearchForm
-          onSearch={onSearch}
-          searchCharacterProp={searchCharacterProp}
-        />
         <Route exact path="/" component={WelcomePage} />
         <Route
           path="/characters"
           render={() => (
             <CharacterList
+              onSearch={onSearch}
+              searchCharacterProp={searchCharacterProp}
               characterList={characterInfo.filter(char => {
                 return char.name
                   .toLowerCase()
@@ -53,6 +53,13 @@ export default function App() {
               })}
             />
           )}
+        />
+        <Route path="/search" 
+        render={()=>(
+          <Search
+          characterList={characterInfo}
+          />
+        )}
         />
       </MainStyle>
     );
@@ -66,5 +73,6 @@ export default function App() {
 }
 
 const MainStyle = styled.main`
+  border: 2px solid blue;
   background: yellow;
 `;

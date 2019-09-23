@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function SearchForm(props) {
-  const { onSearch } = props;
+  const { onSearch,searchCharacterProp } = props;
 
   return (
     <section>

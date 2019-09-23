@@ -19,13 +19,13 @@ const StyledCard = styled.div`
 export default function CharacterCard(props) {
   return (
     <StyledCard>
-      <img src={props.image} />
+      <img src={props.image} alt="character" />
       <h2>Name: {props.name}</h2>
       <p>Status: {props.status}</p>
       <p>Species: {props.species}</p>
       <p>Gender: {props.gender}</p>
-      <p>Location: {props.location.name}</p>
-      <p>Origin: {props.origin.name}</p>
+      {/* <p>Location: {props.location.name}</p>
+      <p>Origin: {props.origin.name}</p> */}
     </StyledCard>
   );
 }
